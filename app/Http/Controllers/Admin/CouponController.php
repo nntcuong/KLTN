@@ -12,25 +12,18 @@ use Illuminate\View\View;
 
 class CouponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index(CouponDataTable $dataTable)
     {
         return $dataTable->render('admin.coupon.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() : View
     {
         return view('admin.coupon.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(CouponCreateRequest $request) : RedirectResponse
     {
         $coupon = new Coupon();
@@ -49,18 +42,14 @@ class CouponController extends Controller
         return to_route('admin.coupon.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id) : View
     {
         $coupon = Coupon::findOrFail($id);
         return view('admin.coupon.edit', compact('coupon'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(CouponCreateRequest $request, string $id)
     {
         $coupon = Coupon::findOrFail($id);
@@ -79,9 +68,7 @@ class CouponController extends Controller
         return to_route('admin.coupon.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         try {

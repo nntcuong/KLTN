@@ -64,8 +64,7 @@
                     <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
                 </li>
                 <li>
-                    <a class="common_btn" href="#" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">reservation</a>
+              
                 </li>
             </ul>
         </div>

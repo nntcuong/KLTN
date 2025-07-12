@@ -12,9 +12,6 @@ use Illuminate\View\View;
 
 class CustomPageBuilderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(CustomPageBuilderDataTable $dataTable) : View|JsonResponse
     {
         return $dataTable->render('admin.custom-page-builder.index');

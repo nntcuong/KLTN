@@ -15,25 +15,19 @@ use Illuminate\Http\Request;
 class SliderController extends Controller
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index(SliderDataTable $dataTable)
     {
         return $dataTable->render('admin.slider.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create(): View
     {
         return view('admin.slider.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(SliderCreateRequest $request)
     {
         /** Handle image upload */
@@ -54,26 +48,19 @@ class SliderController extends Controller
         return to_route('admin.slider.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
     public function edit(string $id): View
     {
         $slider = Slider::findOrFail($id);
         return view('admin.slider.edit', compact('slider'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(SliderUpdateRequest $request, string $id): RedirectResponse
     {
         $slider = Slider::findOrFail($id);
@@ -95,9 +82,7 @@ class SliderController extends Controller
         return to_route('admin.slider.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy(string $id)
     {
         try {

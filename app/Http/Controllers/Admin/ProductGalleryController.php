@@ -14,9 +14,7 @@ use Illuminate\View\View;
 class ProductGalleryController extends Controller
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     */
+  
     public function index(string $productId) : View
     {
         $images = ProductGallery::where('product_id', $productId)->get();
@@ -24,9 +22,7 @@ class ProductGalleryController extends Controller
         return view('admin.product.gallery.index', compact('product', 'images'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
@@ -47,9 +43,6 @@ class ProductGalleryController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id) : Response
     {
         try{

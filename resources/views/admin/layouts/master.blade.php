@@ -20,10 +20,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 
-    <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
-    <!-- Start GA -->
+ 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         var pusherKey = "{{ config('settings.pusher_key') }}";
@@ -47,9 +46,7 @@
                 @yield('content')
             </div>
             <footer class="main-footer">
-                <div class="footer-left">
-                    Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Developed By <a href="https://websolutionus.com">Websolutionus</a>
-                </div>
+                
                 <div class="footer-right">
 
                 </div>
@@ -97,13 +94,13 @@
 
     <script>
         $.uploadPreview({
-            input_field: "#image-upload", // Default: .image-upload
-            preview_box: "#image-preview", // Default: .image-preview
-            label_field: "#image-label", // Default: .image-label
-            label_default: "Choose File", // Default: Choose File
-            label_selected: "Change File", // Default: Change File
-            no_label: false, // Default: false
-            success_callback: null // Default: null
+            input_field: "#image-upload", 
+            preview_box: "#image-preview",
+            label_field: "#image-label", 
+            label_default: "Choose File", 
+            label_selected: "Change File", 
+            no_label: false, 
+            success_callback: null 
         });
 
         $(document).ready(function() {

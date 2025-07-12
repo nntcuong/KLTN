@@ -16,25 +16,18 @@ class BannerSliderController extends Controller
 {
     use FileUploadTrait;
 
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(BannerSliderDataTable $dataTable)
     {
         return $dataTable->render('admin.banner-slider.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() : View
     {
         return view('admin.banner-slider.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(BannerSliderCreateRequest $request)
     {
         $imagePath = $this->uploadImage($request, 'image');
@@ -53,18 +46,13 @@ class BannerSliderController extends Controller
         return to_route('admin.banner-slider.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id) : View
     {
         $bannerSlider = BannerSlider::findOrFail($id);
         return view('admin.banner-slider.edit', compact('bannerSlider'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
@@ -83,9 +71,6 @@ class BannerSliderController extends Controller
         return to_route('admin.banner-slider.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         try {

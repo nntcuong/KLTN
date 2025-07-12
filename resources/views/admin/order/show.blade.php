@@ -95,13 +95,13 @@
 
                                     $qty = $orderItem->qty;
                                     $untiPrice = $orderItem->unit_price;
-                                    $sizePrice = $size->price;
+                                    //$sizePrice = $size->price;
                                     $optionPrice = 0;
                                     foreach ($options as $optionItem) {
                                         $optionPrice += $optionItem->price;
                                     }
 
-                                    $productTotal = ($untiPrice + $sizePrice + $optionPrice) * $qty;
+                                    $productTotal = ($untiPrice  + $optionPrice) * $qty;
                                 @endphp
                                 <tr>
                                     <td>{{ ++$loop->index }}</td>

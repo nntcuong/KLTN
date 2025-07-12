@@ -143,7 +143,7 @@ abstract class Coordinate
      */
     public static function splitRange($range)
     {
-        // Ensure $pRange is a valid range
+        
         if (empty($range)) {
             $range = self::DEFAULT_RANGE;
         }
@@ -151,20 +151,14 @@ abstract class Coordinate
         $exploded = explode(',', $range);
         $counter = count($exploded);
         for ($i = 0; $i < $counter; ++$i) {
-            // @phpstan-ignore-next-line
+     
             $exploded[$i] = explode(':', $exploded[$i]);
         }
 
         return $exploded;
     }
 
-    /**
-     * Build range from coordinate strings.
-     *
-     * @param array $range Array containing one or more arrays containing one or two coordinate strings
-     *
-     * @return string String representation of $pRange
-     */
+
     public static function buildRange(array $range)
     {
         // Verify range
@@ -181,25 +175,16 @@ abstract class Coordinate
         return implode(',', $range);
     }
 
-    /**
-     * Calculate range boundaries.
-     *
-     * @param string $range Cell range, Single Cell, Row/Column Range (e.g. A1:A1, B2, B:C, 2:3)
-     *
-     * @return array Range coordinates [Start Cell, End Cell]
-     *                    where Start Cell and End Cell are arrays (Column Number, Row Number)
-     */
     public static function rangeBoundaries(string $range): array
     {
-        // Ensure $pRange is a valid range
+       
         if (empty($range)) {
             $range = self::DEFAULT_RANGE;
         }
 
-        // Uppercase coordinate
         $range = strtoupper($range);
 
-        // Extract range
+      
         if (strpos($range, ':') === false) {
             $rangeA = $rangeB = $range;
         } else {

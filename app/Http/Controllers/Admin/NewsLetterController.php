@@ -25,8 +25,9 @@ class NewsLetterController extends Controller
 
         $subscribers = Subscriber::pluck('email')->toArray();
 
-        Mail::to($subscribers)->send(new NewsLetter($request->subject, $request->message));
-
+        foreach($subscribers as $email) {
+            Mail::to($email)->send(new NewsLetter($request->subject, $request->message));
+        }
         toastr()->success('News letter sent successfully!');
 
         return redirect()->back();

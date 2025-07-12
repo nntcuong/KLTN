@@ -12,25 +12,18 @@ use Illuminate\View\View;
 
 class AdminManagementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  
     public function index(AdminManagementDataTable $dataTable) : View|JsonResponse
     {
         return $dataTable->render('admin.admin-management.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() : View
     {
         return view('admin.admin-management.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -52,18 +45,14 @@ class AdminManagementController extends Controller
         return to_route('admin.admin-management.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id) : View
     {
         $admin = User::findOrFail($id);
         return view('admin.admin-management.edit', compact('admin'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
@@ -95,9 +84,6 @@ class AdminManagementController extends Controller
         return to_route('admin.admin-management.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         if($id == 1){

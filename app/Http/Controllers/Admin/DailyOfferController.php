@@ -16,9 +16,7 @@ use function Termwind\render;
 
 class DailyOfferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(DailyOfferDataTable $dataTable): View|JsonResponse
     {
         $keys = ['daily_offer_top_title', 'daily_offer_main_title', 'daily_offer_sub_title'];
@@ -32,17 +30,13 @@ class DailyOfferController extends Controller
         return response($product);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create(): View
     {
         return view('admin.daily-offer.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -60,18 +54,13 @@ class DailyOfferController extends Controller
         return to_route('admin.daily-offer.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $dailyOffer = DailyOffer::with('product')->findOrFail($id);
         return view('admin.daily-offer.edit', compact('dailyOffer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -109,9 +98,7 @@ class DailyOfferController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         try {

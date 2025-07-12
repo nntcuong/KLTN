@@ -6,10 +6,10 @@
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>privacy policy</h1>
+                    <h1>privacy poliy</h1>
                     <ul>
                         <li><a href="{{ url('/') }}">home</a></li>
-                        <li><a href="javascript:;">privacy policy</a></li>
+                        <li><a href="javascript:;">privacy poli</a></li>
                     </ul>
                 </div>
             </div>

@@ -13,9 +13,7 @@ use Illuminate\View\View;
 
 class ProductSizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(string $productId) : View
     {
         $product = Product::findOrFail($productId);
@@ -24,9 +22,7 @@ class ProductSizeController extends Controller
         return view('admin.product.product-size.index', compact('product', 'sizes', 'options'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
@@ -47,9 +43,7 @@ class ProductSizeController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy(string $id) : Response
     {
         try{

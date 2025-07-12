@@ -25,26 +25,17 @@ class BlogController extends Controller
 {
     use FileUploadTrait;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(BlogDataTable $dataTable) : View|JsonResponse
     {
         return $dataTable->render('admin.blog.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() : View
     {
         $categories = BlogCategory::all();
         return view('admin.blog.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(BlogCreateRequest $request) : RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image');
@@ -68,9 +59,6 @@ class BlogController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id) : View
     {
         $blog = Blog::findOrFail($id);
@@ -78,9 +66,6 @@ class BlogController extends Controller
         return view('admin.blog.edit', compact('blog', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(BlogUpdateRequest $request, string $id) : RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
@@ -101,9 +86,7 @@ class BlogController extends Controller
         return to_route('admin.blogs.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id) : Response
     {
         try {

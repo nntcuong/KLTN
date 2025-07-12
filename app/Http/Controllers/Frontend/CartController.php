@@ -19,9 +19,7 @@ class CartController extends Controller
         return view('frontend.pages.cart-view');
     }
 
-    /**
-     *  Add product in to cart
-     */
+  
     function addToCart(Request $request)
     {
         $product = Product::with(['productSizes', 'productOptions'])->findOrFail($request->product_id);

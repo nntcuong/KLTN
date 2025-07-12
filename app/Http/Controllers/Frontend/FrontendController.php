@@ -59,9 +59,9 @@ class FrontendController extends Controller
                 $query->where('status', 1);
             }
         ])->with(['category', 'user'])->where('status', 1)->latest()->take(3)->get();
+        // Gọi API gợi ý sản phẩm
         $recommendations = $this->getRecommendations();
 
-        // Lấy SKU từ kết quả
         $skus = [];
         if ($recommendations) {
             foreach ($recommendations as $rec) {
@@ -71,8 +71,20 @@ class FrontendController extends Controller
             }
         }
 
-        // Lấy danh sách sản phẩm theo SKU
-        $dailyOffers = Product::whereIn('sku', $skus)->get();
+        // Lấy toàn bộ sản phẩm có SKU khớp
+        $products = Product::whereIn('sku', $skus)->get()->keyBy('sku');
+
+        // Tạo danh sách sản phẩm theo thứ tự gợi ý
+        $dailyOffers = collect();
+        foreach ($skus as $sku) {
+            if (isset($products[$sku])) {
+                $dailyOffers->push($products[$sku]);
+            }
+        }
+        
+   
+
+
 
         return view(
             'frontend.home.index',
@@ -114,16 +126,16 @@ class FrontendController extends Controller
     function getRecommendations()
     {
         $customerId = Auth::id();
-    
+
         $url = 'http://127.0.0.1:5001/recommend';
-    
+
         try {
             $response = Http::get($url, ['customer_id' => $customerId]);
-    
+
             if ($response->successful()) {
                 return $response->json();
             }
-    
+
             return null;
         } catch (\Exception $e) {
             logger()->error('Flask API error: ' . $e->getMessage());

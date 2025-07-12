@@ -20,9 +20,6 @@ use function Ramsey\Uuid\v1;
 class ChefController extends Controller
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     */
     public function index(ChefDataTable $dataTable) : View|JsonResponse
     {
         $keys = ['chef_top_title', 'chef_main_title', 'chef_sub_title'];
@@ -30,17 +27,12 @@ class ChefController extends Controller
         return $dataTable->render('admin.chef.index', compact('titles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create() : View
     {
         return view('admin.chef.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(ChefCreateRequest $request) : RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image');
@@ -63,18 +55,14 @@ class ChefController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id) : View
     {
         $chef = Chef::findOrFail($id);
         return view('admin.chef.edit', compact('chef'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(ChefUpdateRequest $request, string $id) : RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
@@ -116,9 +104,7 @@ class ChefController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id) : Response
     {
         try {

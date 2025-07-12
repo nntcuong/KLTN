@@ -19,9 +19,7 @@ use Illuminate\View\View;
 class TestimonialController extends Controller
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(TestimonialDataTable $dataTable) : View|JsonResponse
     {
         $keys = ['testimonial_top_title', 'testimonial_main_title', 'testimonial_sub_title'];
@@ -29,17 +27,13 @@ class TestimonialController extends Controller
         return $dataTable->render('admin.testimonial.index', compact('titles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create() : View
     {
         return view('admin.testimonial.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(TestimonialCreateRequest $request) : RedirectResponse
     {
         $imagePath = $this->uploadImage($request, 'image');
@@ -59,18 +53,13 @@ class TestimonialController extends Controller
         return to_route('admin.testimonial.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         $testimonial = Testimonial::findOrFail($id);
         return view('admin.testimonial.edit', compact('testimonial'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(TestimonialUpdateRequest $request, string $id)
     {
         $imagePath = $this->uploadImage($request, 'image', $request->old_image);
@@ -107,9 +96,7 @@ class TestimonialController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id) : Response
     {
         try {
